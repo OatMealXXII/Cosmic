@@ -1,0 +1,1 @@
+{"root":["./src/index.ts","./src/commands/pause.ts","./src/commands/play.ts","./src/commands/resume.ts","./src/commands/stop.ts","./src/config/config.ts","./src/config/node.ts","./src/handlers/commandregister.ts","./src/handlers/interactionhandler.ts","./src/structure/mixed.ts"],"version":"5.8.3"}
