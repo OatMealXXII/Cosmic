@@ -2,7 +2,7 @@
 Discord Music Bot made with discord.js and Shoukaku to play song in discord server by Lavalink.
 
 ## สำหรับภาษาไทย
-- [Readme](https://github.com/OatMealXXII/Cosmic/main/README_TH.md)
+- [Readme](https://github.com/OatMealXXII/Cosmic/blob/main/README_TH.md)
 
 ## ⬆️ Top features
 - 📕 Use [Shoukaku](https://github.com/shipgirlproject/Shoukaku) Client
