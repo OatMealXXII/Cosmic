@@ -2,7 +2,7 @@
 บอทเพลงดิสคอร์ดที่ทำด้วย discord.js และ Shoukaku เพื่อใช้ในการเล่นเพลงในเซิฟเวอร์ดิสคอร์ดต่างๆ ด้วย Lavalink
 
 ## For English
-- [Readme](https://github.com/OatMealXXII/Cosmic/edit/main/README_EN.md)
+- [Readme](https://github.com/OatMealXXII/Cosmic/blob/main/README_EN.md)
 
 ## ⬆️ ฟีเจอร์เด่น
 - 📕 ใช้ Library [Shoukaku](https://github.com/shipgirlproject/Shoukaku)
