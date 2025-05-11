@@ -1,4 +1,6 @@
-import { VoiceState, Client } from 'discord.js';
+// Code in maintainace do not open code to use
+
+/* import { VoiceState, Client } from 'discord.js';
 import { Shoukaku } from 'shoukaku';
 
 const leaveTimeouts = new Map<string, NodeJS.Timeout>();
@@ -36,4 +38,4 @@ export default function handleVoiceStateUpdate(client: Client, shoukaku: Shoukak
             }
         }
     });
-}
+} */
