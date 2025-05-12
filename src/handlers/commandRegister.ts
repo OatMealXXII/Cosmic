@@ -12,7 +12,7 @@ import { data as queue } from '../commands/queue.ts';
 import { data as skip } from '../commands/skip.ts';
 import { data as volume } from '../commands/volume.ts'
 import { data as setup } from '../commands/setup.ts';
-import { set } from 'mongoose';
+import { data as loop } from '../commands/loop.ts'
 
 export async function registerCommands(client: Client) {
 
@@ -72,7 +72,12 @@ export async function registerCommands(client: Client) {
         new SlashCommandBuilder()
             .setName('setup')
             .setDescription('สร้างห้องสั่งเพลง')
-            .toJSON,
+            .toJSON(),
+
+        new SlashCommandBuilder()
+            .setName('loop')
+            .setDescription('ตั้งวนลูปให้เพลง')
+            .toJSON(),
     ];
 
     try {
@@ -88,6 +93,7 @@ export async function registerCommands(client: Client) {
                 skip.toJSON(),
                 volume.toJSON(),
                 setup.toJSON(),
+                loop.toJSON(),
             ]
         });
         console.log('✅ Assign commands successfully!');

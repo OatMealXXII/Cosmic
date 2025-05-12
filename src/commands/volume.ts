@@ -1,6 +1,6 @@
 import { Player, Shoukaku } from "shoukaku";
 import { ChatInputCommandInteraction, EmbedBuilder, Guild, SlashCommandBuilder } from "discord.js";
-import { playerChannelMap } from "../maps/playerChannelMap.ts";
+import { playerChannelMap } from "../maps/mapsController.ts";
 
 export const data = new SlashCommandBuilder()
     .setName('volume')

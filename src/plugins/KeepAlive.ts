@@ -8,7 +8,6 @@ export function keepAlive() {
 
   const port = process.env.PORT || 3000;
 
-  // ใช้ Elysia.fetch แทน Elysia.listen
   const startServer = async () => {
     await app.fetch(new Request(`http://localhost:${port}`));
     console.log(`✅ KeepAlive server is running on http://localhost:${port}`);

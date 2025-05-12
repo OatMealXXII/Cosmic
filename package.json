@@ -1,6 +1,7 @@
 {
   "type": "module",
   "scripts": {
+    "build": "tsc --build",
     "start": "node src/index.ts"
   },
   "dependencies": {

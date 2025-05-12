@@ -1,4 +1,4 @@
-import { Client, GatewayIntentBits, REST, Routes, ActivityType, PresenceUpdateStatus } from 'discord.js';
+import { Client, GatewayIntentBits, REST, Routes, ActivityType, PresenceUpdateStatus, ChatInputCommandInteraction, Events } from 'discord.js';
 import { Shoukaku, Connectors } from 'shoukaku';
 import path from 'path';
 import { fileURLToPath } from 'url';
@@ -9,6 +9,7 @@ import { handleInteraction } from './handlers/interactionHandler.ts';
 import { keepAlive } from './plugins/KeepAlive.ts';
 import config from './config/config.ts';
 import handleVoiceStateUpdate from './interactions/interactionCreate.ts';
+import { musicRoomMap } from './commands/setup.ts';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 configDotenv({ path: path.resolve(__dirname, '../.env') });
@@ -22,12 +23,12 @@ interface Nodes {
 };
 
 const client = new Client({
-        intents: [
-            GatewayIntentBits.Guilds,
-            GatewayIntentBits.GuildVoiceStates,
-            GatewayIntentBits.GuildVoiceStates
-        ]
-    });
+    intents: [
+        GatewayIntentBits.Guilds,
+        GatewayIntentBits.GuildVoiceStates,
+        GatewayIntentBits.GuildVoiceStates
+    ]
+});
 
 const shoukaku = new Shoukaku(new Connectors.DiscordJS(client), Nodes);
 

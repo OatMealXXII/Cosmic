@@ -2,7 +2,8 @@ import { Shoukaku } from "shoukaku";
 import { ChatInputCommandInteraction, SlashCommandBuilder, EmbedBuilder, ActionRowBuilder, ButtonBuilder, ButtonStyle } from 'discord.js';
 import config from "../config/config.ts";
 import { queueMap } from './queue.ts';
-import { playerChannelMap } from "../maps/playerChannelMap.ts";
+import { playerChannelMap } from "../maps/mapsController.ts";
+import { loopModeMap } from "../maps/mapsController.ts";
 
 type Track = {
     encoded: string;
@@ -55,7 +56,7 @@ export async function execute(interaction: ChatInputCommandInteraction, shoukaku
             deaf: true
         });
     }
-    
+
     const result = await player.node.rest.resolve(query);
     playerChannelMap.set(interaction.guildId!, vc.id);
 
@@ -94,23 +95,43 @@ export async function execute(interaction: ChatInputCommandInteraction, shoukaku
         .setTimestamp()
         .setFooter({ text: 'Cosmic - OatMealXXII' });
 
+        
+    const queueEmbed = new EmbedBuilder()
+        .setColor('#0099ff')
+        .setTitle('เพิ่มเพลงไปยังคิว')
+        .setDescription(`🎶 เพิ่มเพลง **${track.info.title}** ไปยังคิวแล้ว`)
+        .addFields(
+            { name: 'ศิลปิน', value: track.info.author, inline: true },
+            { name: 'ความยาว', value: `${(track.info.length / 1000 / 60).toFixed(2)} นาที`, inline: true }
+        )
+        .setTimestamp()
+        .setFooter({ text: 'Cosmic - OatMealXXII' });
+
     if (!queueMap.has(guildId!)) queueMap.set(guildId!, []);
 
     const queue = queueMap.get(guildId!)!;
-
     player.volume = config.defaultvolume.volume;
 
-    const row = new ActionRowBuilder<ButtonBuilder>().addComponents(
+    /* const row = new ActionRowBuilder<ButtonBuilder>().addComponents(
         new ButtonBuilder()
             .setCustomId('toggle-playback')
-            .setLabel('⏯ เล่น/หยุด')
-            .setStyle(ButtonStyle.Primary)
-    );
+            .setLabel('⏯️')
+            .setStyle(ButtonStyle.Primary),
+        new ButtonBuilder()
+            .setCustomId('skip-track')
+            .setLabel('⏭️')
+            .setStyle(ButtonStyle.Secondary),
+        new ButtonBuilder()
+            .setCustomId('stop-track')
+            .setLabel('⏹️')
+            .setStyle(ButtonStyle.Danger),
+    ); */
 
     if (player.track) {
         queue.push(track);
         return await interaction.reply({
             content: `🎶 เพิ่มเพลง **${track.info.title}** ไปยังคิวแล้ว`,
+            embeds: [queueEmbed],
             ephemeral: true
         });
     } else {
@@ -119,13 +140,25 @@ export async function execute(interaction: ChatInputCommandInteraction, shoukaku
         interaction.reply({
             content: `🎶 กำลังเล่น: **${track.info.title}**`,
             embeds: [embed],
+            // components: [row]
         });
     }
 
     player.on('end', async () => {
         const queue = queueMap.get(guildId!) ?? [];
-        const nextTrack = queue.shift();
+        const loopMode = loopModeMap.get(guildId!) || 'off';
+        const currentTrack = (player as any).currentTrack;
 
+        if (loopMode === 'one' && currentTrack) {
+            await player.playTrack({ track: { encoded: currentTrack.encoded } });
+            return;
+        }
+
+        if (loopMode === 'all' && currentTrack) {
+            queue.push(currentTrack);
+        }
+
+        const nextTrack = queue.shift();
         if (nextTrack) {
             await player.playTrack({ track: { encoded: nextTrack.encoded } });
         }
