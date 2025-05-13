@@ -38,6 +38,7 @@ or
 npm install
 ```
 3. intializing bot by <br />
+
 ```bash
 bun start
 ```
