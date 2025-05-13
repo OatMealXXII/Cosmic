@@ -15,7 +15,7 @@ Discord Music Bot made with discord.js and Shoukaku to play song in discord serv
 - 🔊 High quality sound
 
 ## ❓ Requirements
-- NodeJS v20+
+- Node.js lastest LTS [Node.js](https://nodejs.org/en)
 - Discord Bot Token ([Guide](https://discordjs.guide/preparations/setting-up-a-bot-application.html#creating-your-bot))
 - Lavalink (see this [Lavalink](https://lavalink.dev/))
 
