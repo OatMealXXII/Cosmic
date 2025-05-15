@@ -5,7 +5,6 @@ Discord Music Bot made with discord.js and Shoukaku to play song in discord serv
     <img src="https://storage.googleapis.com/hikara_bucket/OatMeal/Cosmic.png"> 
 </p>
 
-
 ## สำหรับภาษาไทย
 - [Readme](https://github.com/OatMealXXII/Cosmic/blob/main/README_TH.md)
 
