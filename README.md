@@ -23,15 +23,16 @@ Discord Music Bot made with discord.js and Shoukaku to play song in discord serv
 - Discord Bot Token ([Guide](https://discordjs.guide/preparations/setting-up-a-bot-application.html#creating-your-bot))
 - Lavalink (see this [Lavalink](https://lavalink.dev/))
 
-## 🏁 Start using bot
-- For all I recommended to use `bun` <br />
+## 🏁 Getting Started
 
-1 .Clone repository: <br />
+> 💡 We recommend using `bun` for performance and speed.
+
+- Clone the repository
 ```bash
 git clone https://github.com/OatMealXXII/Cosmic
 ```
 <br />
-2. Install dependencies <br />
+- Install dependencies <br />
 
 ```bash
 bun install
@@ -41,7 +42,19 @@ or
 ```bash
 npm install
 ```
-3. intializing bot by <br />
+<br />
+
+- Change `.env.example` to `.env` and put Bot Token into `TOKEN = ''` <br />
+
+- Config your Lavalink Node in `src/config/node.ts` <br />
+ Default is `{
+    name: 'LocalNode',
+    url: '127.0.0.1:2333',
+    auth: 'youshallnotpass',
+    secure: false,
+  }` <br />
+  
+- initializing bot by <br />
 
 ```bash
 bun start
