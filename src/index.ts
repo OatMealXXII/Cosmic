@@ -32,7 +32,7 @@ const client = new Client({
 
 setupAntiCrash(client, {
     logToChannel: true,                   // เปิดการส่งข้อผิดพลาดไปยังช่อง Discord
-    logChannelId: '1319946779847954443',  // ระบุ ID ของช่องที่จะส่งข้อความแจ้งเตือน
+    logChannelId: '',  // ระบุ ID ของช่องที่จะส่งข้อความแจ้งเตือน
     exitOnUncaught: false,                // ไม่ปิดบอทเมื่อเกิด uncaught exception
     logDirectory: 'logs'                  // ตั้งค่าโฟลเดอร์สำหรับเก็บ log
 });
