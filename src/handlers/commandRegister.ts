@@ -13,6 +13,7 @@ import { data as skip } from '../commands/skip.ts';
 import { data as volume } from '../commands/volume.ts'
 import { data as setup } from '../commands/setup.ts';
 import { data as loop } from '../commands/loop.ts'
+import { data as shuffle } from '../commands/shuffle.ts'
 
 export async function registerCommands(client: Client) {
 
@@ -78,6 +79,11 @@ export async function registerCommands(client: Client) {
             .setName('loop')
             .setDescription('ตั้งวนลูปให้เพลง')
             .toJSON(),
+
+        new SlashCommandBuilder()
+            .setName('shuffle')
+            .setDescription('สลับคิวเพลง')
+            .toJSON(),
     ];
 
     try {
@@ -94,6 +100,7 @@ export async function registerCommands(client: Client) {
                 volume.toJSON(),
                 setup.toJSON(),
                 loop.toJSON(),
+                shuffle.toJSON(),
             ]
         });
         console.log('✅ Assign commands successfully!');

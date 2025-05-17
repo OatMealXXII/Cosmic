@@ -30,7 +30,7 @@ export async function execute(interaction: ChatInputCommandInteraction, shoukaku
     const nextTrack = queue.shift();
     if (!nextTrack) {
         await player.stopTrack();
-        queueMap.delete(guildId); // ล้างคิว
+        queueMap.delete(guildId);
         return await interaction.reply('❌ ไม่มีเพลงถัดไปในคิวแล้ว');
     }
 

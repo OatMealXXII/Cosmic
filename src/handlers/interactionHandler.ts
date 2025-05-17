@@ -11,12 +11,18 @@ import * as skip from '../commands/skip.ts';
 import * as volume from '../commands/volume.ts'
 import * as setup from '../commands/setup.ts'
 import * as loop from '../commands/loop.ts'
-// import { handleButton } from './buttonHandler.ts';
+import * as shuffle from '../commands/shuffle.ts'
+import { handleButton } from './buttonHandler.ts';
 
 export async function handleInteraction(
   interaction: ChatInputCommandInteraction,
   shoukaku: Shoukaku
 ) {
+  if (interaction.isButton()) {
+    return handleButton(interaction, shoukaku);
+  }
+
+  if (!interaction.isChatInputCommand()) return;
   switch (interaction.commandName) {
     case 'play':
       return play.execute(interaction, shoukaku);
@@ -32,19 +38,21 @@ export async function handleInteraction(
       return nodeCommand.execute(interaction, shoukaku);
     case 'queue':
       return queue.execute(interaction, shoukaku);
-    case 'skip' :
+    case 'skip':
       return skip.execute(interaction, shoukaku);
-    case 'volume' :
-       return volume.execute(interaction, shoukaku);
-    case 'setup' :
-       return setup.execute(interaction, shoukaku);
-    case 'loop' :
-       return loop.execute(interaction, shoukaku);
-  } 
-  
-  /* if (interaction.isButton()) {
+    case 'volume':
+      return volume.execute(interaction, shoukaku);
+    case 'setup':
+      return setup.execute(interaction, shoukaku);
+    case 'loop':
+      return loop.execute(interaction, shoukaku);
+    case 'shuffle' :
+      return shuffle.execute(interaction, shoukaku);
+  }
+
+  if (interaction.isButton()) {
     return handleButton(interaction, shoukaku);
-  } */
+  }
 
   const query = interaction.options.getString('query', true);
   const member = interaction.guild?.members.cache.get(interaction.user.id);

@@ -6,11 +6,11 @@ import { configDotenv } from 'dotenv';
 import Nodes from './config/node.ts';
 import { registerCommands } from './handlers/commandRegister.ts';
 import { handleInteraction } from './handlers/interactionHandler.ts';
-import { keepAlive } from './plugins/KeepAlive.ts';
+import { keepAlive } from './plugins/keepAlive.ts';
 import config from './config/config.ts';
 import handleVoiceStateUpdate from './interactions/interactionCreate.ts';
 import { musicRoomMap } from './commands/setup.ts';
-
+import { setupAntiCrash } from './plugins/antiCrash.ts';
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 configDotenv({ path: path.resolve(__dirname, '../.env') });
 
@@ -30,9 +30,15 @@ const client = new Client({
     ]
 });
 
+setupAntiCrash(client, {
+    logToChannel: true,                   // เปิดการส่งข้อผิดพลาดไปยังช่อง Discord
+    logChannelId: '1319946779847954443',  // ระบุ ID ของช่องที่จะส่งข้อความแจ้งเตือน
+    exitOnUncaught: false,                // ไม่ปิดบอทเมื่อเกิด uncaught exception
+    logDirectory: 'logs'                  // ตั้งค่าโฟลเดอร์สำหรับเก็บ log
+});
+
 const shoukaku = new Shoukaku(new Connectors.DiscordJS(client), Nodes);
 
-// Add error handling for Shoukaku
 shoukaku.on('error', (name, error) => {
     console.error(`Shoukaku error on node ${name}:`, error);
 });

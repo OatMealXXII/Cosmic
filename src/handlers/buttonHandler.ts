@@ -1,4 +1,4 @@
-/* import { ButtonInteraction } from "discord.js";
+import { ButtonInteraction } from "discord.js";
 import { Shoukaku } from "shoukaku";
 import { queueMap } from "../commands/queue.ts";
 
@@ -33,4 +33,4 @@ export async function handleButton(interaction: ButtonInteraction, shoukaku: Sho
             }
             break;
     }
-} */
+}
