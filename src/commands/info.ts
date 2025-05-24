@@ -1,7 +1,8 @@
 import {
   SlashCommandBuilder,
   ChatInputCommandInteraction,
-  EmbedBuilder
+  EmbedBuilder,
+  ButtonInteraction
 } from 'discord.js';
 import { Shoukaku } from 'shoukaku';
 
@@ -29,7 +30,7 @@ export const data = new SlashCommandBuilder()
   .setName('info')
   .setDescription('แสดงข้อมูลเพลงที่กำลังเล่นอยู่');
 
-export async function execute(interaction: ChatInputCommandInteraction, shoukaku: Shoukaku) {
+export async function execute(interaction: ChatInputCommandInteraction | ButtonInteraction, shoukaku: Shoukaku) {
   try {
     const player = shoukaku.players.get(interaction.guildId!);
     if (!player) {

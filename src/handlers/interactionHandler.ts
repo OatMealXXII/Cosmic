@@ -8,10 +8,16 @@ import * as info from '../commands/info.ts';
 import * as nodeCommand from '../commands/node.ts';
 import * as queue from '../commands/queue.ts';
 import * as skip from '../commands/skip.ts';
-import * as volume from '../commands/volume.ts'
-import * as setup from '../commands/setup.ts'
-import * as loop from '../commands/loop.ts'
-import * as shuffle from '../commands/shuffle.ts'
+import * as volume from '../commands/volume.ts';
+import * as setup from '../commands/setup.ts';
+import * as loop from '../commands/loop.ts';
+import * as shuffle from '../commands/shuffle.ts';
+import * as rank from '../commands/rank.ts';
+import * as leaderboard from '../commands/leaderboard.ts';
+import * as seek from '../commands/seek.ts';
+import * as distortion from '../commands/effects/distortion.ts';
+import * as lowpass from '../commands/effects/lowpass.ts';
+import * as karaoke from '../commands/effects/karaoke.ts';
 import { handleButton } from './buttonHandler.ts';
 
 export async function handleInteraction(
@@ -46,8 +52,20 @@ export async function handleInteraction(
       return setup.execute(interaction, shoukaku);
     case 'loop':
       return loop.execute(interaction, shoukaku);
-    case 'shuffle' :
+    case 'shuffle':
       return shuffle.execute(interaction, shoukaku);
+    case 'rank':
+      return rank.execute(interaction, shoukaku);
+    case 'leaderboard':
+      return leaderboard.execute(interaction, shoukaku);
+    case 'seek':
+      return seek.execute(interaction, shoukaku);
+    case 'distortion':
+      return distortion.execute(interaction, shoukaku);
+    case 'karaoke':
+      return karaoke.execute(interaction, shoukaku);
+    case 'lowpass':
+      return lowpass.execute(interaction, shoukaku);
   }
 
   if (interaction.isButton()) {

@@ -3,6 +3,7 @@ import { ChatInputCommandInteraction, SlashCommandBuilder, EmbedBuilder, ActionR
 import config from "../config/config.ts";
 import { queueMap } from './queue.ts';
 import { playerChannelMap, loopModeMap, disconnectTimeouts } from "../maps/mapsController.ts";
+import { updateStats } from '../utils/stats.ts';
 
 type Track = {
     encoded: string;
@@ -122,9 +123,12 @@ export async function execute(interaction: ChatInputCommandInteraction, shoukaku
                 const firstTrack = validTracks[0];
                 await player.playTrack({ track: { encoded: firstTrack.encoded } });
                 (player as any).currentTrack = firstTrack;
+
+                updateStats({ lastSong: firstTrack.info.title, songsPlayed: 1 }, firstTrack.info.uri);
                 
                 if (validTracks.length > 1) {
                     queue.push(...validTracks.slice(1));
+                    updateStats({ lastSong: firstTrack.info.title, songsPlayed: 1 }, firstTrack.info.uri);
                 }
 
                 const row = createControlRow();
@@ -157,6 +161,7 @@ export async function execute(interaction: ChatInputCommandInteraction, shoukaku
                 });
             } else {
                 await player.playTrack({ track: { encoded: track.encoded } });
+                updateStats({ lastSong: track.info.title, songsPlayed: 1 }, track.info.uri);
                 (player as any).currentTrack = track;
                 const row = createControlRow();
                 await interaction.editReply({
@@ -197,6 +202,7 @@ function setupPlayerEvents(player: any, shoukaku: Shoukaku, guildId: string) {
             const nextTrack = queue.shift();
             if (nextTrack) {
                 await player.playTrack({ track: { encoded: nextTrack.encoded } });
+                updateStats({ lastSong: nextTrack.info.title }, nextTrack.info.uri);
                 player.currentTrack = nextTrack;
             } else {
                 const timeout = setTimeout(async () => {
@@ -265,13 +271,20 @@ function formatDuration(milliseconds: number): string {
 function createControlRow(): ActionRowBuilder<ButtonBuilder> {
     return new ActionRowBuilder<ButtonBuilder>().addComponents(
         new ButtonBuilder()
+            .setCustomId('show-nowplaying')
+            .setLabel('🎵')
+            .setStyle(ButtonStyle.Secondary),
+
+        new ButtonBuilder()
             .setCustomId('toggle-playback')
             .setLabel('⏯️')
             .setStyle(ButtonStyle.Primary),
+
         new ButtonBuilder()
             .setCustomId('skip-track')
             .setLabel('⏭️')
             .setStyle(ButtonStyle.Secondary),
+
         new ButtonBuilder()
             .setCustomId('stop-track')
             .setLabel('⏹️')

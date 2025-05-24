@@ -31,10 +31,10 @@ const client = new Client({
 });
 
 setupAntiCrash(client, {
-    logToChannel: true,                   // เปิดการส่งข้อผิดพลาดไปยังช่อง Discord
-    logChannelId: '',  // ระบุ ID ของช่องที่จะส่งข้อความแจ้งเตือน
-    exitOnUncaught: false,                // ไม่ปิดบอทเมื่อเกิด uncaught exception
-    logDirectory: 'logs'                  // ตั้งค่าโฟลเดอร์สำหรับเก็บ log
+    logToChannel: true,                   // Open send error logs to channel Discord
+    logChannelId: '1319946779847954443',  // Logs channel ID (discord channel ID)
+    exitOnUncaught: false,                // Not turn off bot on uncaught exception
+    logDirectory: 'logs'                  // Local Folder logs
 });
 
 const shoukaku = new Shoukaku(new Connectors.DiscordJS(client), Nodes);
@@ -59,7 +59,7 @@ client.once('ready', async () => {
         status: config.activities.status as 'online' | 'idle' | 'dnd' | 'invisible',
         activities: [
             {
-                name: '/play เพื่อเล่นเพลง เอ๊ะส่องอีกแล้วน้าาาา ❤️',
+                name: '/play เพื่อเล่นเพลง',
                 type: ActivityType.Listening
             }
         ],

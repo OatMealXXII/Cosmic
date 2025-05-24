@@ -1,5 +1,6 @@
-import { PermissionsBitField, ChatInputCommandInteraction, ChannelType, SlashCommandBuilder } from "discord.js";
-import { Shoukaku } from "shoukaku";
+import { ChatInputCommandInteraction, PermissionFlagsBits, SlashCommandBuilder } from 'discord.js';
+import { Shoukaku } from 'shoukaku';
+import { getMusicChannel, setMusicChannel } from '../utils/channelStorage.ts';
 
 export const musicRoomMap = new Map<string, string>();
 
@@ -7,31 +8,24 @@ export const data = new SlashCommandBuilder()
     .setName('setup')
     .setDescription('สร้างห้องเล่นเพลง');
 
-export async function execute(interaction: ChatInputCommandInteraction, shoukaku: Shoukaku) {
-    const guild = interaction.guild!;
-    const existing = guild.channels.cache.find(c => c.name === "🎵・Cosmic" && c.type === ChannelType.GuildText);
+export async function execute(interaction: ChatInputCommandInteraction, _shoukaku: Shoukaku) {
+  const guild = interaction.guild;
+  if (!guild) return interaction.reply({ content: '❌ ใช้ได้ในเซิร์ฟเวอร์เท่านั้น', ephemeral: true });
 
-    if (existing) {
-        musicRoomMap.set(guild.id, existing.id);
-        return interaction.reply({ content: '❗ มีห้องสั่งเพลงอยู่แล้ว', ephemeral: true });
-    }
+  const existing = getMusicChannel(guild.id);
+  if (existing) return interaction.reply({ content: '❌ ตั้งค่าห้องไว้แล้ว', ephemeral: true });
 
-    const channel = await guild.channels.create({
-        name: '🎵・Cosmic',
-        type: ChannelType.GuildText,
-        topic: 'ห้องเอาไว้สั่งเพลงใช้กับบอท Cosmic',
-        permissionOverwrites: [
-            {
-                id: guild.roles.everyone,
-                allow: [
-                    PermissionsBitField.Flags.ViewChannel,
-                    PermissionsBitField.Flags.SendMessages,
-                    PermissionsBitField.Flags.ReadMessageHistory,
-                ]
-            }
-        ]
-    });
+  const channel = await guild.channels.create({
+    name: '🎶・Cosmic',
+    type: 0,
+    permissionOverwrites: [
+      {
+        id: guild.roles.everyone,
+        allow: [PermissionFlagsBits.ViewChannel, PermissionFlagsBits.SendMessages],
+      },
+    ],
+  });
 
-    musicRoomMap.set(guild.id, channel.id);
-    interaction.reply({ content: '✅ สร้างห้องสั่งเพลงเรียบร้อยแล้ว', ephemeral: true });
+  setMusicChannel(guild.id, channel.id);
+  return interaction.reply(`✅ สร้างห้อง ${channel.toString()} สำหรับสั่งเพลงอัตโนมัติแล้ว`);
 }

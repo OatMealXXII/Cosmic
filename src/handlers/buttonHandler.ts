@@ -1,6 +1,7 @@
 import { ButtonInteraction } from "discord.js";
 import { Shoukaku } from "shoukaku";
 import { queueMap } from "../commands/queue.ts";
+import * as info from '../commands/info.ts'
 
 export async function handleButton(interaction: ButtonInteraction, shoukaku: Shoukaku) {
     const player = shoukaku.players.get(interaction.guildId!);
@@ -32,5 +33,8 @@ export async function handleButton(interaction: ButtonInteraction, shoukaku: Sho
                 await interaction.reply({ content: '❌ ไม่มีเพลงถัดไปในคิว', ephemeral: true });
             }
             break;
+        case 'show-nowplaying':
+            await interaction.reply({ content: 'ข้อมูลเพลงที่เล่นอยู่ตอนนี้'});
+            info.execute(interaction, shoukaku)
     }
 }

@@ -10,10 +10,16 @@ import { data as info } from '../commands/info.ts';
 import { data as node } from '../commands/node.ts';
 import { data as queue } from '../commands/queue.ts';
 import { data as skip } from '../commands/skip.ts';
-import { data as volume } from '../commands/volume.ts'
+import { data as volume } from '../commands/volume.ts';
 import { data as setup } from '../commands/setup.ts';
-import { data as loop } from '../commands/loop.ts'
-import { data as shuffle } from '../commands/shuffle.ts'
+import { data as loop } from '../commands/loop.ts';
+import { data as shuffle } from '../commands/shuffle.ts';
+import { data as rank } from '../commands/rank.ts';
+import { data as leaderboard } from '../commands/leaderboard.ts';
+import { data as seek } from '../commands/seek.ts';
+import { data as distortion } from '../commands/effects/distortion.ts';
+import { data as lowpass } from '../commands/effects/lowpass.ts';
+import { data as karaoke } from '../commands/effects/karaoke.ts';
 
 export async function registerCommands(client: Client) {
 
@@ -84,6 +90,36 @@ export async function registerCommands(client: Client) {
             .setName('shuffle')
             .setDescription('สลับคิวเพลง')
             .toJSON(),
+
+        new SlashCommandBuilder()
+            .setName('rank')
+            .setDescription('ดูแรงค์ของคุณ')
+            .toJSON(),
+
+        new SlashCommandBuilder()
+            .setName('leaderboard')
+            .setDescription('ดูอันดับกระดานแรงค์')
+            .toJSON(),
+
+        new SlashCommandBuilder()
+            .setName('seek')
+            .setDescription('จำนวนวินาทีที่ต้องการเลื่อนไป')
+            .toJSON(),
+
+        new SlashCommandBuilder()
+            .setName('distortion')
+            .setDescription('เอฟเฟค Distortion สำหรับเพลง')
+            .toJSON(),
+
+            new SlashCommandBuilder()
+            .setName('karaoke')
+            .setDescription('เอฟเฟค Karaoke สำหรับเพลง')
+            .toJSON(),
+
+            new SlashCommandBuilder()
+            .setName('lowpass')
+            .setDescription('เอฟเฟค LowPass สำหรับเพลง')
+            .toJSON(),
     ];
 
     try {
@@ -101,6 +137,12 @@ export async function registerCommands(client: Client) {
                 setup.toJSON(),
                 loop.toJSON(),
                 shuffle.toJSON(),
+                rank.toJSON(),
+                leaderboard.toJSON(),
+                seek.toJSON(),
+                distortion.toJSON(),
+                karaoke.toJSON(),
+                lowpass.toJSON()
             ]
         });
         console.log('✅ Assign commands successfully!');
