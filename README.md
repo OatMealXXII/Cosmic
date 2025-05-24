@@ -65,7 +65,7 @@ npm start
 ```
 
 ## License
-This project is licensed under the [GNU Affero General Public License v3.0](LICENSE) - see the [LICENSE](LICENSE) file for details. <br />
+This project is licensed under the [GNU General Public License v3.0](LICENSE) - see the [LICENSE](LICENSE) file for details. <br />
 You can modify and publish but you must provide attribution by linking back to original repository and include this copyright notice.
 
 ## Credits
