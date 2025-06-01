@@ -1,5 +1,5 @@
 import { ChatInputCommandInteraction, SlashCommandBuilder } from 'discord.js';
-import { getStats } from '../utils/stats';
+import { getStats } from '../utils/stats.ts';
 
 export const data = new SlashCommandBuilder()
   .setName('stats')

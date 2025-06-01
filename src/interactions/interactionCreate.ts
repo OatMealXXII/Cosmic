@@ -1,4 +1,5 @@
 import { VoiceState, Client } from 'discord.js';
+import { autocomplete as playAutocomplete } from '../commands/play.ts';
 import { Shoukaku } from 'shoukaku';
 
 const leaveTimeouts = new Map<string, NodeJS.Timeout>();
@@ -35,5 +36,14 @@ export default function handleVoiceStateUpdate(client: Client, shoukaku: Shoukak
                 leaveTimeouts.delete(guildId);
             }
         }
+
+        client.on('interactionCreate', async (interaction) => {
+            if (interaction.isAutocomplete()) {
+                if (interaction.commandName === 'play') {
+                    await playAutocomplete(interaction);
+                }
+            }
+        });
+
     });
 }

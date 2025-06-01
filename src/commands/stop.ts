@@ -6,7 +6,6 @@ export const data = new SlashCommandBuilder()
   .setDescription('หยุดเพลงและออกจากช่องเสียง');
 
 export async function execute(interaction: ChatInputCommandInteraction, shoukaku: Shoukaku) {
-  const value = interaction.options.getNumber('value', true);
   const player = shoukaku.players.get(interaction.guildId!);
   const guildId = interaction.guildId;
 
@@ -19,7 +18,8 @@ export async function execute(interaction: ChatInputCommandInteraction, shoukaku
 
   try {
     await player.stopTrack();
-    await shoukaku.leaveVoiceChannel(player.guildId)
+    await shoukaku.leaveVoiceChannel(player.guildId!);
+    await player.destroy();
     await interaction.reply({
         content: '⏹️ หยุดเล่นเพลงและออกจากช่องเสียงเรียบร้อยแล้ว',
         ephemeral: true

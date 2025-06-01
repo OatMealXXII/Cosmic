@@ -1,0 +1,20 @@
+[2025-05-31T16:09:09.472Z] [INFO] AntiCrash system initialized
+
+[2025-05-31T16:12:45.223Z] [ERROR] [Unhandled Promise Rejection] TypeError: Cannot read properties of undefined (reading 'map')
+Stack Trace:
+TypeError: Cannot read properties of undefined (reading 'map')
+    at Module.execute (file:///C:/Users/OatMeal/Desktop/Cosmic/src/commands/help.ts:15:50)
+    at handleInteraction (file:///C:/Users/OatMeal/Desktop/Cosmic/src/handlers/interactionHandler.ts:71:19)
+    at Client.<anonymous> (file:///C:/Users/OatMeal/Desktop/Cosmic/src/index.ts:71:5)
+    at Client.emit (node:events:519:35)
+    at InteractionCreateAction.handle (C:\Users\OatMeal\Desktop\Cosmic\node_modules\discord.js\src\client\actions\InteractionCreate.js:97:12)
+    at module.exports [as INTERACTION_CREATE] (C:\Users\OatMeal\Desktop\Cosmic\node_modules\discord.js\src\client\websocket\handlers\INTERACTION_CREATE.js:4:36)
+    at WebSocketManager.handlePacket (C:\Users\OatMeal\Desktop\Cosmic\node_modules\discord.js\src\client\websocket\WebSocketManager.js:351:31)
+    at WebSocketManager.<anonymous> (C:\Users\OatMeal\Desktop\Cosmic\node_modules\discord.js\src\client\websocket\WebSocketManager.js:235:12)
+    at WebSocketManager.emit (C:\Users\OatMeal\Desktop\Cosmic\node_modules\@vladfrangu\async_event_emitter\dist\index.cjs:287:31)
+    at WebSocketShard.<anonymous> (C:\Users\OatMeal\Desktop\Cosmic\node_modules\@discordjs\ws\dist\index.js:1190:51)
+
+[2025-05-31T16:14:20.460Z] [INFO] Bot received SIGINT signal, shutting down gracefully
+
+[2025-05-31T16:14:20.462Z] [INFO] Performing cleanup before shutdown
+

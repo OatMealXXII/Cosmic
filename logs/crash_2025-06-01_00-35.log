@@ -1,0 +1,22 @@
+[2025-05-31T17:35:01.632Z] [INFO] AntiCrash system initialized
+
+[2025-05-31T17:36:14.561Z] [WARNING] [Process Warning] Warning: Supplying "ephemeral" for interaction response options is deprecated. Utilize flags instead.
+
+[2025-05-31T17:42:33.641Z] [ERROR] [Unhandled Promise Rejection] TypeError [CommandInteractionOptionNotFound]: Required option "value" not found.
+Stack Trace:
+TypeError [CommandInteractionOptionNotFound]: Required option "value" not found.
+    at CommandInteractionOptionResolver.get (C:\Users\OatMeal\Desktop\Cosmic\node_modules\discord.js\src\structures\CommandInteractionOptionResolver.js:78:15)
+    at CommandInteractionOptionResolver._getTypedOption (C:\Users\OatMeal\Desktop\Cosmic\node_modules\discord.js\src\structures\CommandInteractionOptionResolver.js:95:25)
+    at CommandInteractionOptionResolver.getNumber (C:\Users\OatMeal\Desktop\Cosmic\node_modules\discord.js\src\structures\CommandInteractionOptionResolver.js:194:25)
+    at Module.execute (file:///C:/Users/OatMeal/Desktop/Cosmic/src/commands/stop.ts:9:37)
+    at handleInteraction (file:///C:/Users/OatMeal/Desktop/Cosmic/src/handlers/interactionHandler.ts:42:19)
+    at Client.<anonymous> (file:///C:/Users/OatMeal/Desktop/Cosmic/src/index.ts:91:5)
+    at Client.emit (node:events:519:35)
+    at InteractionCreateAction.handle (C:\Users\OatMeal\Desktop\Cosmic\node_modules\discord.js\src\client\actions\InteractionCreate.js:97:12)
+    at module.exports [as INTERACTION_CREATE] (C:\Users\OatMeal\Desktop\Cosmic\node_modules\discord.js\src\client\websocket\handlers\INTERACTION_CREATE.js:4:36)
+    at WebSocketManager.handlePacket (C:\Users\OatMeal\Desktop\Cosmic\node_modules\discord.js\src\client\websocket\WebSocketManager.js:351:31)
+
+[2025-05-31T17:43:15.358Z] [INFO] Bot received SIGINT signal, shutting down gracefully
+
+[2025-05-31T17:43:15.358Z] [INFO] Performing cleanup before shutdown
+

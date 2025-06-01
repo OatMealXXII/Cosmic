@@ -1,0 +1,6 @@
+[2025-05-28T11:53:19.070Z] [INFO] AntiCrash system initialized
+
+[2025-05-28T11:53:23.408Z] [INFO] Bot received SIGINT signal, shutting down gracefully
+
+[2025-05-28T11:53:23.409Z] [INFO] Performing cleanup before shutdown
+

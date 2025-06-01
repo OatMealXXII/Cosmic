@@ -2,8 +2,8 @@ import { SlashCommandBuilder, ChatInputCommandInteraction } from 'discord.js';
 import { Shoukaku } from 'shoukaku';
 
 export const data = new SlashCommandBuilder()
-    .setName('karaoke')
-    .setDescription('เอฟฟเฟค Karaoke สำหรับเพลง');
+    .setName('clearfilters')
+    .setDescription('🗑️ ล้างเอฟเฟคทั้งหมด');
 
 export async function execute(interaction: ChatInputCommandInteraction, shoukaku: Shoukaku) {
     const guildId = interaction.guildId!;
@@ -18,12 +18,9 @@ export async function execute(interaction: ChatInputCommandInteraction, shoukaku
         return interaction.reply({ content: '❌ ไม่มีเพลงที่กำลังเล่นอยู่', ephemeral: true });
     }
 
-    const filters = (player as any).filters;
-    if (filters?.karaoke) {
-        await player!.clearFilters();
-        return interaction.reply({ content: `ปิดเอฟเฟค Karaoke แล้ว!`, ephemeral: true });
-    }
-
-    await player!.setKaraoke({ level: 1.0, monoLevel: 1.0, filterBand: 220, filterWidth: 100 });
-    return interaction.reply({ content: `เปิดเอฟเฟค Karaoke แล้ว!`, ephemeral: true });
+    await player!.clearFilters();
+    return interaction.reply({ 
+        content: `🗑️ ล้างเอฟเฟคทั้งหมดแล้ว!`, 
+        ephemeral: true 
+    });
 }

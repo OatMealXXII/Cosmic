@@ -21,7 +21,7 @@ export async function execute(interaction: ChatInputCommandInteraction, shoukaku
     const filters = (player as any).filters;
     if (filters?.distortion) {
         await player!.clearFilters();
-        return interaction.reply({ content: `ปิดเอฟเฟค Lowpass แล้ว!`, ephemeral: true });
+        return interaction.reply({ content: `ปิดเอฟเฟค Distortion แล้ว!`, ephemeral: true });
     }
 
     await player!.setDistortion({

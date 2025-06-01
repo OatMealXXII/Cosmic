@@ -18,6 +18,12 @@ import * as seek from '../commands/seek.ts';
 import * as distortion from '../commands/effects/distortion.ts';
 import * as lowpass from '../commands/effects/lowpass.ts';
 import * as karaoke from '../commands/effects/karaoke.ts';
+import * as help from '../commands/help.ts';
+import * as ping from '../commands/ping.ts';
+import * as lofi from '../commands/effects/lofi.ts';
+import * as nightcore from '../commands/effects/nightcore.ts';
+import * as vaporwave from '../commands/effects/vaporwave.ts';
+import * as clearFilters from '../commands/effects/clearFilters.ts';
 import { handleButton } from './buttonHandler.ts';
 
 export async function handleInteraction(
@@ -66,6 +72,18 @@ export async function handleInteraction(
       return karaoke.execute(interaction, shoukaku);
     case 'lowpass':
       return lowpass.execute(interaction, shoukaku);
+    case 'help':
+      return help.execute(interaction, shoukaku);
+    case 'ping':
+      return ping.execute(interaction, shoukaku);
+    case 'lofi':
+      return lofi.execute(interaction, shoukaku);
+    case 'nightcore':
+      return nightcore.execute(interaction, shoukaku);
+    case 'vaporwave':
+      return vaporwave.execute(interaction, shoukaku);
+    case 'clearfilters':
+      return clearFilters.execute(interaction, shoukaku);
   }
 
   if (interaction.isButton()) {

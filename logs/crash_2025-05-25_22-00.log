@@ -1,0 +1,126 @@
+[2025-05-25T15:00:12.095Z] [INFO] AntiCrash system initialized
+
+[2025-05-25T15:00:15.406Z] [ERROR] [Discord Client Error] DiscordAPIError[50035]: Invalid Form Body
+data.choices[0].name[BASE_TYPE_BAD_LENGTH]: Must be between 1 and 100 in length.
+Stack Trace:
+DiscordAPIError[50035]: Invalid Form Body
+data.choices[0].name[BASE_TYPE_BAD_LENGTH]: Must be between 1 and 100 in length.
+    at handleErrors (C:\Users\OatMeal\Desktop\Cosmic\node_modules\@discordjs\rest\dist\index.js:748:13)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async BurstHandler.runRequest (C:\Users\OatMeal\Desktop\Cosmic\node_modules\@discordjs\rest\dist\index.js:852:23)
+    at async _REST.request (C:\Users\OatMeal\Desktop\Cosmic\node_modules\@discordjs\rest\dist\index.js:1293:22)
+    at async AutocompleteInteraction.respond (C:\Users\OatMeal\Desktop\Cosmic\node_modules\discord.js\src\structures\AutocompleteInteraction.js:86:5)
+    at async autocomplete (file:///C:/Users/OatMeal/Desktop/Cosmic/src/commands/play.ts:58:16)
+    at async Client.<anonymous> (file:///C:/Users/OatMeal/Desktop/Cosmic/src/index.ts:79:13)
+
+[2025-05-25T15:00:17.199Z] [ERROR] [Discord Client Error] DiscordAPIError[50035]: Invalid Form Body
+data.choices[0].name[BASE_TYPE_BAD_LENGTH]: Must be between 1 and 100 in length.
+Stack Trace:
+DiscordAPIError[50035]: Invalid Form Body
+data.choices[0].name[BASE_TYPE_BAD_LENGTH]: Must be between 1 and 100 in length.
+    at handleErrors (C:\Users\OatMeal\Desktop\Cosmic\node_modules\@discordjs\rest\dist\index.js:748:13)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async BurstHandler.runRequest (C:\Users\OatMeal\Desktop\Cosmic\node_modules\@discordjs\rest\dist\index.js:852:23)
+    at async _REST.request (C:\Users\OatMeal\Desktop\Cosmic\node_modules\@discordjs\rest\dist\index.js:1293:22)
+    at async AutocompleteInteraction.respond (C:\Users\OatMeal\Desktop\Cosmic\node_modules\discord.js\src\structures\AutocompleteInteraction.js:86:5)
+    at async autocomplete (file:///C:/Users/OatMeal/Desktop/Cosmic/src/commands/play.ts:58:16)
+    at async Client.<anonymous> (file:///C:/Users/OatMeal/Desktop/Cosmic/src/index.ts:79:13)
+
+[2025-05-25T15:00:21.711Z] [ERROR] [Discord Client Error] DiscordAPIError[50035]: Invalid Form Body
+data.choices[0].name[BASE_TYPE_BAD_LENGTH]: Must be between 1 and 100 in length.
+Stack Trace:
+DiscordAPIError[50035]: Invalid Form Body
+data.choices[0].name[BASE_TYPE_BAD_LENGTH]: Must be between 1 and 100 in length.
+    at handleErrors (C:\Users\OatMeal\Desktop\Cosmic\node_modules\@discordjs\rest\dist\index.js:748:13)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async BurstHandler.runRequest (C:\Users\OatMeal\Desktop\Cosmic\node_modules\@discordjs\rest\dist\index.js:852:23)
+    at async _REST.request (C:\Users\OatMeal\Desktop\Cosmic\node_modules\@discordjs\rest\dist\index.js:1293:22)
+    at async AutocompleteInteraction.respond (C:\Users\OatMeal\Desktop\Cosmic\node_modules\discord.js\src\structures\AutocompleteInteraction.js:86:5)
+    at async autocomplete (file:///C:/Users/OatMeal/Desktop/Cosmic/src/commands/play.ts:58:16)
+    at async Client.<anonymous> (file:///C:/Users/OatMeal/Desktop/Cosmic/src/index.ts:79:13)
+
+[2025-05-25T15:00:25.029Z] [ERROR] [Discord Client Error] DiscordAPIError[50035]: Invalid Form Body
+data.choices[0].name[BASE_TYPE_BAD_LENGTH]: Must be between 1 and 100 in length.
+Stack Trace:
+DiscordAPIError[50035]: Invalid Form Body
+data.choices[0].name[BASE_TYPE_BAD_LENGTH]: Must be between 1 and 100 in length.
+    at handleErrors (C:\Users\OatMeal\Desktop\Cosmic\node_modules\@discordjs\rest\dist\index.js:748:13)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async BurstHandler.runRequest (C:\Users\OatMeal\Desktop\Cosmic\node_modules\@discordjs\rest\dist\index.js:852:23)
+    at async _REST.request (C:\Users\OatMeal\Desktop\Cosmic\node_modules\@discordjs\rest\dist\index.js:1293:22)
+    at async AutocompleteInteraction.respond (C:\Users\OatMeal\Desktop\Cosmic\node_modules\discord.js\src\structures\AutocompleteInteraction.js:86:5)
+    at async autocomplete (file:///C:/Users/OatMeal/Desktop/Cosmic/src/commands/play.ts:58:16)
+    at async Client.<anonymous> (file:///C:/Users/OatMeal/Desktop/Cosmic/src/index.ts:79:13)
+
+[2025-05-25T15:00:25.790Z] [ERROR] [Discord Client Error] DiscordAPIError[50035]: Invalid Form Body
+data.choices[0].name[BASE_TYPE_BAD_LENGTH]: Must be between 1 and 100 in length.
+Stack Trace:
+DiscordAPIError[50035]: Invalid Form Body
+data.choices[0].name[BASE_TYPE_BAD_LENGTH]: Must be between 1 and 100 in length.
+    at handleErrors (C:\Users\OatMeal\Desktop\Cosmic\node_modules\@discordjs\rest\dist\index.js:748:13)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async BurstHandler.runRequest (C:\Users\OatMeal\Desktop\Cosmic\node_modules\@discordjs\rest\dist\index.js:852:23)
+    at async _REST.request (C:\Users\OatMeal\Desktop\Cosmic\node_modules\@discordjs\rest\dist\index.js:1293:22)
+    at async AutocompleteInteraction.respond (C:\Users\OatMeal\Desktop\Cosmic\node_modules\discord.js\src\structures\AutocompleteInteraction.js:86:5)
+    at async autocomplete (file:///C:/Users/OatMeal/Desktop/Cosmic/src/commands/play.ts:58:16)
+    at async Client.<anonymous> (file:///C:/Users/OatMeal/Desktop/Cosmic/src/index.ts:79:13)
+
+[2025-05-25T15:00:57.287Z] [WARNING] [Process Warning] Warning: Supplying "ephemeral" for interaction response options is deprecated. Utilize flags instead.
+
+[2025-05-25T15:05:47.815Z] [ERROR] [Discord Client Error] DiscordAPIError[50035]: Invalid Form Body
+data.choices[0].name[BASE_TYPE_BAD_LENGTH]: Must be between 1 and 100 in length.
+Stack Trace:
+DiscordAPIError[50035]: Invalid Form Body
+data.choices[0].name[BASE_TYPE_BAD_LENGTH]: Must be between 1 and 100 in length.
+    at handleErrors (C:\Users\OatMeal\Desktop\Cosmic\node_modules\@discordjs\rest\dist\index.js:748:13)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async BurstHandler.runRequest (C:\Users\OatMeal\Desktop\Cosmic\node_modules\@discordjs\rest\dist\index.js:852:23)
+    at async _REST.request (C:\Users\OatMeal\Desktop\Cosmic\node_modules\@discordjs\rest\dist\index.js:1293:22)
+    at async AutocompleteInteraction.respond (C:\Users\OatMeal\Desktop\Cosmic\node_modules\discord.js\src\structures\AutocompleteInteraction.js:86:5)
+    at async autocomplete (file:///C:/Users/OatMeal/Desktop/Cosmic/src/commands/play.ts:58:16)
+    at async Client.<anonymous> (file:///C:/Users/OatMeal/Desktop/Cosmic/src/index.ts:79:13)
+
+[2025-05-25T15:05:58.360Z] [ERROR] [Discord Client Error] DiscordAPIError[50035]: Invalid Form Body
+data.choices[0].name[BASE_TYPE_BAD_LENGTH]: Must be between 1 and 100 in length.
+Stack Trace:
+DiscordAPIError[50035]: Invalid Form Body
+data.choices[0].name[BASE_TYPE_BAD_LENGTH]: Must be between 1 and 100 in length.
+    at handleErrors (C:\Users\OatMeal\Desktop\Cosmic\node_modules\@discordjs\rest\dist\index.js:748:13)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async BurstHandler.runRequest (C:\Users\OatMeal\Desktop\Cosmic\node_modules\@discordjs\rest\dist\index.js:852:23)
+    at async _REST.request (C:\Users\OatMeal\Desktop\Cosmic\node_modules\@discordjs\rest\dist\index.js:1293:22)
+    at async AutocompleteInteraction.respond (C:\Users\OatMeal\Desktop\Cosmic\node_modules\discord.js\src\structures\AutocompleteInteraction.js:86:5)
+    at async autocomplete (file:///C:/Users/OatMeal/Desktop/Cosmic/src/commands/play.ts:58:16)
+    at async Client.<anonymous> (file:///C:/Users/OatMeal/Desktop/Cosmic/src/index.ts:79:13)
+
+[2025-05-25T15:06:13.350Z] [ERROR] [Discord Client Error] DiscordAPIError[50035]: Invalid Form Body
+data.choices[0].name[BASE_TYPE_BAD_LENGTH]: Must be between 1 and 100 in length.
+Stack Trace:
+DiscordAPIError[50035]: Invalid Form Body
+data.choices[0].name[BASE_TYPE_BAD_LENGTH]: Must be between 1 and 100 in length.
+    at handleErrors (C:\Users\OatMeal\Desktop\Cosmic\node_modules\@discordjs\rest\dist\index.js:748:13)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async BurstHandler.runRequest (C:\Users\OatMeal\Desktop\Cosmic\node_modules\@discordjs\rest\dist\index.js:852:23)
+    at async _REST.request (C:\Users\OatMeal\Desktop\Cosmic\node_modules\@discordjs\rest\dist\index.js:1293:22)
+    at async AutocompleteInteraction.respond (C:\Users\OatMeal\Desktop\Cosmic\node_modules\discord.js\src\structures\AutocompleteInteraction.js:86:5)
+    at async autocomplete (file:///C:/Users/OatMeal/Desktop/Cosmic/src/commands/play.ts:58:16)
+    at async Client.<anonymous> (file:///C:/Users/OatMeal/Desktop/Cosmic/src/index.ts:79:13)
+
+[2025-05-25T15:06:46.343Z] [ERROR] [Unhandled Promise Rejection] TypeError [CommandInteractionOptionNotFound]: Required option "value" not found.
+Stack Trace:
+TypeError [CommandInteractionOptionNotFound]: Required option "value" not found.
+    at CommandInteractionOptionResolver.get (C:\Users\OatMeal\Desktop\Cosmic\node_modules\discord.js\src\structures\CommandInteractionOptionResolver.js:78:15)
+    at CommandInteractionOptionResolver._getTypedOption (C:\Users\OatMeal\Desktop\Cosmic\node_modules\discord.js\src\structures\CommandInteractionOptionResolver.js:95:25)
+    at CommandInteractionOptionResolver.getNumber (C:\Users\OatMeal\Desktop\Cosmic\node_modules\discord.js\src\structures\CommandInteractionOptionResolver.js:194:25)
+    at Module.execute (file:///C:/Users/OatMeal/Desktop/Cosmic/src/commands/stop.ts:9:37)
+    at handleInteraction (file:///C:/Users/OatMeal/Desktop/Cosmic/src/handlers/interactionHandler.ts:36:19)
+    at Client.<anonymous> (file:///C:/Users/OatMeal/Desktop/Cosmic/src/index.ts:71:5)
+    at Client.emit (node:events:519:35)
+    at InteractionCreateAction.handle (C:\Users\OatMeal\Desktop\Cosmic\node_modules\discord.js\src\client\actions\InteractionCreate.js:97:12)
+    at module.exports [as INTERACTION_CREATE] (C:\Users\OatMeal\Desktop\Cosmic\node_modules\discord.js\src\client\websocket\handlers\INTERACTION_CREATE.js:4:36)
+    at WebSocketManager.handlePacket (C:\Users\OatMeal\Desktop\Cosmic\node_modules\discord.js\src\client\websocket\WebSocketManager.js:351:31)
+
+[2025-05-25T15:06:53.168Z] [INFO] Bot received SIGINT signal, shutting down gracefully
+
+[2025-05-25T15:06:53.169Z] [INFO] Performing cleanup before shutdown
+

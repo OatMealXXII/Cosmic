@@ -1,6 +1,11 @@
-import { Client, GatewayIntentBits, REST, Routes, ActivityType, PresenceUpdateStatus, ChatInputCommandInteraction, Events } from 'discord.js';
+import { Client, GatewayIntentBits, ActivityType, Collection } from 'discord.js';
 import { Shoukaku, Connectors } from 'shoukaku';
 import path from 'path';
+
+interface CustomClient extends Client {
+    shoukaku?: Shoukaku;
+}
+import fs from 'fs';
 import { fileURLToPath } from 'url';
 import { configDotenv } from 'dotenv';
 import Nodes from './config/node.ts';
@@ -9,8 +14,9 @@ import { handleInteraction } from './handlers/interactionHandler.ts';
 import { keepAlive } from './plugins/keepAlive.ts';
 import config from './config/config.ts';
 import handleVoiceStateUpdate from './interactions/interactionCreate.ts';
-import { musicRoomMap } from './commands/setup.ts';
 import { setupAntiCrash } from './plugins/antiCrash.ts';
+import { autocomplete as playAutocomplete } from './commands/play.ts';
+
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 configDotenv({ path: path.resolve(__dirname, '../.env') });
 
@@ -18,11 +24,9 @@ interface Nodes {
     identifier: string;
     host: string;
     port: number;
-    auth: string;
-    secure: boolean;
-};
+}
 
-const client = new Client({
+const client: CustomClient = new Client({
     intents: [
         GatewayIntentBits.Guilds,
         GatewayIntentBits.GuildVoiceStates,
@@ -37,7 +41,31 @@ setupAntiCrash(client, {
     logDirectory: 'logs'                  // Local Folder logs
 });
 
+client.commands = new Collection();
+
+const commandFiles = fs.readdirSync(path.join(__dirname, 'commands')).filter(file => file.endsWith('.js') || file.endsWith('.ts'));
+
+// แทนที่ส่วนนี้ในไฟล์หลัก
+for (const file of commandFiles) {
+    try {
+        const command = await import(`./commands/${file}`);
+        
+        // ตรวจสอบทั้ง named export และ default export
+        const commandData = command.default || command;
+        
+        if (commandData.data?.name) {
+            client.commands.set(commandData.data.name, commandData);
+            console.log(`✅ Loaded command: ${commandData.data.name}`);
+        } else {
+            console.warn(`⚠️ Command ${file} missing data or name property`);
+        }
+    } catch (error) {
+        console.error(`❌ Error loading command ${file}:`, error);
+    }
+}
+
 const shoukaku = new Shoukaku(new Connectors.DiscordJS(client), Nodes);
+client.shoukaku = shoukaku;
 
 shoukaku.on('error', (name, error) => {
     console.error(`Shoukaku error on node ${name}:`, error);
@@ -52,7 +80,7 @@ shoukaku.on('disconnect', (name, reason) => {
 });
 
 client.once('ready', async () => {
-    console.log(`${client.user?.tag} is ready.`);
+    console.log(`${client.user?.tag} is ready.`, client.shoukaku ? 'Available' : 'Not Available');
     await registerCommands(client);
 
     client.user!.setPresence({
@@ -71,6 +99,22 @@ client.on('interactionCreate', (interaction) => {
     handleInteraction(interaction, shoukaku);
 
     client.user?.setActivity(config.activities.name, { type: ActivityType[config.activities.type as keyof typeof ActivityType] });
+});
+
+client.on('interactionCreate', async (interaction) => {
+    if (interaction.isAutocomplete()) {
+        if (interaction.commandName === 'play') {
+            try {
+                await playAutocomplete(interaction, client.shoukaku);
+            } catch (error) {
+                console.error('Autocomplete error:', error);
+                const focusedValue = interaction.options.getFocused();
+                await interaction.respond([
+                    { name: `🔍 ค้นหา: ${focusedValue}`, value: focusedValue }
+                ]);
+            }
+        }
+    }
 });
 
 handleVoiceStateUpdate(client, shoukaku);

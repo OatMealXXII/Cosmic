@@ -20,6 +20,13 @@ import { data as seek } from '../commands/seek.ts';
 import { data as distortion } from '../commands/effects/distortion.ts';
 import { data as lowpass } from '../commands/effects/lowpass.ts';
 import { data as karaoke } from '../commands/effects/karaoke.ts';
+import { data as help } from '../commands/help.ts';
+import { data as ping } from '../commands/ping.ts';
+import { data as lofi } from '../commands/effects/lofi.ts';
+import { data as nightcore } from '../commands/effects/nightcore.ts';
+import { data as vaporwave } from '../commands/effects/vaporwave.ts';
+import { data as clearFilters } from '../commands/effects/clearFilters.ts';
+
 
 export async function registerCommands(client: Client) {
 
@@ -111,14 +118,44 @@ export async function registerCommands(client: Client) {
             .setDescription('เอฟเฟค Distortion สำหรับเพลง')
             .toJSON(),
 
-            new SlashCommandBuilder()
+        new SlashCommandBuilder()
             .setName('karaoke')
             .setDescription('เอฟเฟค Karaoke สำหรับเพลง')
             .toJSON(),
 
-            new SlashCommandBuilder()
+        new SlashCommandBuilder()
             .setName('lowpass')
             .setDescription('เอฟเฟค LowPass สำหรับเพลง')
+            .toJSON(),
+
+        new SlashCommandBuilder()
+            .setName('help')
+            .setDescription('ดูคำสั่งทั้งหมดของบอท')
+            .toJSON(),
+
+        new SlashCommandBuilder()
+            .setName('ping')
+            .setDescription('📡 ping check')
+            .toJSON(),
+
+                new SlashCommandBuilder()
+            .setName('lofi')
+            .setDescription('🎵 เอฟเฟค Lo-Fi สำหรับเพลง (ฟังสบายๆทำงาน เรียน)')
+            .toJSON(),
+
+        new SlashCommandBuilder()
+            .setName('nightcore')
+            .setDescription('🎵 เอฟเฟค Nightcore สำหรับเพลง (เล่นเกม + ปลุกใจ)')
+            .toJSON(),
+
+         new SlashCommandBuilder()
+            .setName('vaporwave')
+            .setDescription('🎵 เอฟเฟค Vaporwave สำหรับเพลง (ฟังสบายๆ)')
+            .toJSON(),
+
+        new SlashCommandBuilder()
+            .setName('clearfilters')
+            .setDescription('🗑️ ล้างเอฟเฟคทั้งหมด')
             .toJSON(),
     ];
 
@@ -142,7 +179,13 @@ export async function registerCommands(client: Client) {
                 seek.toJSON(),
                 distortion.toJSON(),
                 karaoke.toJSON(),
-                lowpass.toJSON()
+                lowpass.toJSON(),
+                help.toJSON(),
+                ping.toJSON(),
+                lofi.toJSON(),
+                nightcore.toJSON(),
+                vaporwave.toJSON(),
+                clearFilters.toJSON(),
             ]
         });
         console.log('✅ Assign commands successfully!');
