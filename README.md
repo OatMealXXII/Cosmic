@@ -44,6 +44,25 @@ npm install
 ```
 <br />
 
+- Install typescript tools <br />
+
+```bash
+npm install -g typescript
+```
+
+```bash
+npm install -g npx
+``` 
+
+```bash
+npm install -g tsx
+```
+
+```bash
+npm install -g ts-node
+```
+<br />
+
 - Change `.env.example` to `.env` and put Bot Token into `TOKEN = ''` <br />
 
 - Config your Lavalink Node in `src/config/node.ts` <br />
