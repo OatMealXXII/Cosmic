@@ -1,7 +1,0 @@
-[2025-05-31T16:23:14.371Z] [INFO] AntiCrash system initialized
-
-[2025-05-31T16:23:14.373Z] [ERROR] [Uncaught Exception] TypeError: Cannot read properties of undefined (reading 'data')
-Stack Trace:
-TypeError: Cannot read properties of undefined (reading 'data')
-    at file:///C:/Users/OatMeal/Desktop/Cosmic/src/index.ts:48:41
-

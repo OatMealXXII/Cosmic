@@ -1,8 +1,0 @@
-[2025-05-31T17:44:09.091Z] [INFO] AntiCrash system initialized
-
-[2025-05-31T17:46:03.809Z] [WARNING] [Process Warning] Warning: Supplying "ephemeral" for interaction response options is deprecated. Utilize flags instead.
-
-[2025-05-31T17:46:30.037Z] [INFO] Bot received SIGINT signal, shutting down gracefully
-
-[2025-05-31T17:46:30.038Z] [INFO] Performing cleanup before shutdown
-
