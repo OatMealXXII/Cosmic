@@ -23,13 +23,13 @@
 ## 🏁 เริ่มต้นใช้งานบอท
 - สำหรับทุกการทำงานแนะนำให้ใช้ `bun` <br />
 
-1. Clone repository: <br />
+- Clone repository: <br />
 ```bash
 git clone https://github.com/OatMealXXII/Cosmic
 ```
 <br />
 
-2. Install dependencies <br />
+- Install dependencies <br />
 ```bash
 bun install
 ``` 
@@ -37,7 +37,27 @@ bun install
 ```bash
 npm install
 ```
-3. intializing bot by <br />
+
+- Install typescript tools <br />
+
+```bash
+npm install -g typescript
+```
+
+```bash
+npm install -g npx
+``` 
+
+```bash
+npm install -g tsx
+```
+
+```bash
+npm install -g ts-node
+```
+<br />
+
+- intializing bot by <br />
 ```bash
 bun start
 ```
