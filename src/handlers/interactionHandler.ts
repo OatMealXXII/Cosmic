@@ -1,4 +1,4 @@
-import { ChatInputCommandInteraction } from 'discord.js';
+import { ChatInputCommandInteraction, ButtonInteraction } from 'discord.js';
 import { Shoukaku } from 'shoukaku';
 import * as play from '../commands/play.ts';
 import * as stop from '../commands/stop.ts';
@@ -24,10 +24,12 @@ import * as lofi from '../commands/effects/lofi.ts';
 import * as nightcore from '../commands/effects/nightcore.ts';
 import * as vaporwave from '../commands/effects/vaporwave.ts';
 import * as clearFilters from '../commands/effects/clearFilters.ts';
+import * as restart from '../commands/restart.ts';
+import * as invite from '../commands/invite.ts';
 import { handleButton } from './buttonHandler.ts';
 
 export async function handleInteraction(
-  interaction: ChatInputCommandInteraction,
+  interaction: ChatInputCommandInteraction | ButtonInteraction,
   shoukaku: Shoukaku
 ) {
   if (interaction.isButton()) {
@@ -84,6 +86,10 @@ export async function handleInteraction(
       return vaporwave.execute(interaction, shoukaku);
     case 'clearfilters':
       return clearFilters.execute(interaction, shoukaku);
+    case 'invite':
+      return invite.execute(interaction,);
+    case 'restart':
+      return restart.execute(shoukaku, interaction);
   }
 
   if (interaction.isButton()) {
@@ -110,7 +116,7 @@ export async function handleInteraction(
     deaf: true
   });
 
-  const result = await node.rest.resolve(query);
+  const result = await node.rest.resolve(`spsearch:${query}`);
   if (!result || !Array.isArray(result.data) || result.data.length === 0) {
     return interaction.editReply('ไม่พบผลลัพธ์');
   }

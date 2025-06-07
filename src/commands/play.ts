@@ -4,6 +4,7 @@ import config from "../config/config.ts";
 import { queueMap } from './queue.ts';
 import { playerChannelMap, loopModeMap, disconnectTimeouts } from "../maps/mapsController.ts";
 import { updateStats } from '../utils/stats.ts';
+import { createMusicButtons, createSecondaryButtons } from '../handlers/buttonHandler.ts';
 
 type Track = {
     encoded: string;
@@ -44,7 +45,7 @@ function formatSearchQuery(query: string): string {
         return query;
     }
 
-    return `ytsearch:${query}`;
+    return `spsearch:${query}`;
 }
 
 export async function autocomplete(interaction: AutocompleteInteraction, shoukaku?: Shoukaku) {
@@ -54,7 +55,7 @@ export async function autocomplete(interaction: AutocompleteInteraction, shoukak
         const popularSuggestions = [
             'Idol - Yoasobi',
             'Payphone - Maroon 5',
-            'Shape of You - Ed Sheeran', 
+            'Shape of You - Ed Sheeran',
             'oath sign - LiSA',
             'BIRDS OF A FEATHER - Billie Eilish',
             'Ghost - JUSTIN BIEBER',
@@ -75,7 +76,7 @@ export async function autocomplete(interaction: AutocompleteInteraction, shoukak
         if (!shoukaku) {
             const client = interaction.client as any;
             shoukaku = client.shoukaku || client.music || client.lavalink;
-            
+
             if (!shoukaku) {
                 return await interaction.respond([
                     { name: `🔍 ค้นหา: ${focusedValue}`, value: focusedValue }
@@ -90,17 +91,17 @@ export async function autocomplete(interaction: AutocompleteInteraction, shoukak
             ]);
         }
 
-        const searchQuery = `ytsearch:${focusedValue}`;
-        
+        const searchQuery = `spsearch:${focusedValue}`;
+
         const searchPromise = node.rest.resolve(searchQuery);
-        const timeoutPromise = new Promise<never>((_, reject) => 
+        const timeoutPromise = new Promise<never>((_, reject) =>
             setTimeout(() => reject(new Error('Search timeout')), 3000)
         );
-        
+
         const result = await Promise.race([searchPromise, timeoutPromise]) as { loadType: string; data: any[] };
 
         if (result && result.loadType === 'search' && Array.isArray(result.data) && result.data.length > 0) {
-            
+
             const suggestions = result.data
                 .slice(0, 20)
                 .filter((track: any) => {
@@ -112,9 +113,9 @@ export async function autocomplete(interaction: AutocompleteInteraction, shoukak
                         const title = track.info?.title || 'Unknown Title';
                         const author = track.info?.author || 'Unknown Artist';
                         const duration = track.info?.length ? formatDuration(track.info.length) : '00:00';
-                        
+
                         const displayName = `🎵 ${title} - ${author} [${duration}]`;
-                        
+
                         return {
                             name: displayName.length > 100 ? displayName.substring(0, 97) + '...' : displayName,
                             value: track.info?.uri || track.info?.title || focusedValue
@@ -167,6 +168,9 @@ export async function execute(interaction: ChatInputCommandInteraction, shoukaku
     }
 
     await interaction.deferReply();
+
+    const primaryButtons = createMusicButtons(player);
+    const secondaryButtons = createSecondaryButtons();
 
     try {
         if (!player) {
@@ -244,11 +248,10 @@ export async function execute(interaction: ChatInputCommandInteraction, shoukaku
                     queue.push(...validTracks.slice(1));
                 }
 
-                const row = createControlRow();
+                const nowPlayingEmbed = createNowPlayingEmbed(firstTrack);
                 await interaction.editReply({
-                    content: `🎶 กําลังเล่น: **${firstTrack.info.title}**\nเพิ่มเพลงในเพลย์ลิสต์ ${playlistName} อีก ${validTracks.length - 1} เพลง`,
-                    embeds: [createNowPlayingEmbed(firstTrack), playlistEmbed],
-                    components: [row.toJSON()]
+                    embeds: [nowPlayingEmbed],
+                    components: [primaryButtons, secondaryButtons]
                 });
             } else {
                 queue.push(...validTracks);
@@ -278,11 +281,10 @@ export async function execute(interaction: ChatInputCommandInteraction, shoukaku
                 await player.playTrack({ track: { encoded: firstTrack.encoded } });
                 updateStats({ lastSong: firstTrack.info.title, songsPlayed: 1 }, firstTrack.info.uri);
                 (player as any).currentTrack = firstTrack;
-                const row = createControlRow();
+                const nowPlayingEmbed = createNowPlayingEmbed(firstTrack);
                 await interaction.editReply({
-                    content: `🎶 กําลังเล่น: **${firstTrack.info.title}**`,
-                    embeds: [createNowPlayingEmbed(firstTrack)],
-                    components: [row.toJSON()]
+                    embeds: [nowPlayingEmbed],
+                    components: [primaryButtons, secondaryButtons]
                 });
             }
         } else {
@@ -304,11 +306,10 @@ export async function execute(interaction: ChatInputCommandInteraction, shoukaku
                 await player.playTrack({ track: { encoded: track.encoded } });
                 updateStats({ lastSong: track.info.title, songsPlayed: 1 }, track.info.uri);
                 (player as any).currentTrack = track;
-                const row = createControlRow();
+                const nowPlayingEmbed = createNowPlayingEmbed(track);
                 await interaction.editReply({
-                    content: `🎶 กําลังเล่น: **${track.info.title}**`,
-                    embeds: [createNowPlayingEmbed(track)],
-                    components: [row.toJSON()]
+                    embeds: [nowPlayingEmbed],
+                    components: [primaryButtons, secondaryButtons]
                 });
             }
         }
@@ -327,23 +328,20 @@ function setupPlayerEvents(player: any, shoukaku: Shoukaku, guildId: string) {
         const currentTrack = player.currentTrack;
         if (currentTrack) {
             updateStats({ lastSong: currentTrack.info.title }, currentTrack.info.uri);
-            
+
             try {
                 const channel = player.voiceConnection?.channelId;
                 if (channel) {
                     const guild = (player.node as any).client?.guilds?.cache?.get(guildId);
-                    const textChannel = guild?.channels?.cache?.find((ch: any) => 
+                    const textChannel = guild?.channels?.cache?.find((ch: any) =>
                         ch.type === 0 && ch.name.includes('music') || ch.name.includes('bot')
                     );
-                    
+
                     if (textChannel) {
-                        const embed = createNowPlayingEmbed(currentTrack);
-                        const row = createControlRow();
-                        
-                        await (textChannel as any).send({
-                            content: `🎶 กำลังเล่น: **${currentTrack.info.title}**`,
-                            embeds: [embed],
-                            components: [row.toJSON()]
+                        const nowPlayingEmbed = createNowPlayingEmbed(track);
+                        await textChannel.send({
+                            embeds: [nowPlayingEmbed],
+                            components: [createMusicButtons(player), createSecondaryButtons()]
                         });
                     }
                 }
@@ -372,13 +370,14 @@ function setupPlayerEvents(player: any, shoukaku: Shoukaku, guildId: string) {
             const nextTrack = queue.shift();
             if (nextTrack) {
                 player.currentTrack = nextTrack;
-                
+
                 await player.playTrack({ track: { encoded: nextTrack.encoded } });
                 updateStats({ lastSong: nextTrack.info.title }, nextTrack.info.uri);
-                
+
             } else {
                 player.currentTrack = null;
-                
+
+
                 const timeout = setTimeout(async () => {
                     try {
                         const currentPlayer = shoukaku.players.get(guildId);
@@ -389,7 +388,6 @@ function setupPlayerEvents(player: any, shoukaku: Shoukaku, guildId: string) {
                             playerChannelMap.delete(guildId);
                             queueMap.delete(guildId);
                         }
-                        disconnectTimeouts.delete(guildId);
                     } catch (error) {
                     }
                 }, 30000);
@@ -439,28 +437,4 @@ function formatDuration(milliseconds: number): string {
     const seconds = totalSeconds % 60;
 
     return `${minutes}:${seconds.toString().padStart(2, '0')}`;
-}
-
-function createControlRow(): ActionRowBuilder {
-    return new ActionRowBuilder().addComponents(
-        new ButtonBuilder()
-            .setCustomId('show-nowplaying')
-            .setLabel('🎵')
-            .setStyle(ButtonStyle.Secondary),
-
-        new ButtonBuilder()
-            .setCustomId('toggle-playback')
-            .setLabel('⏯️')
-            .setStyle(ButtonStyle.Primary),
-
-        new ButtonBuilder()
-            .setCustomId('skip-track')
-            .setLabel('⏭️')
-            .setStyle(ButtonStyle.Secondary),
-
-        new ButtonBuilder()
-            .setCustomId('stop-track')
-            .setLabel('⏹️')
-            .setStyle(ButtonStyle.Danger),
-    );
 }

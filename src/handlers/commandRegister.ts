@@ -22,11 +22,12 @@ import { data as lowpass } from '../commands/effects/lowpass.ts';
 import { data as karaoke } from '../commands/effects/karaoke.ts';
 import { data as help } from '../commands/help.ts';
 import { data as ping } from '../commands/ping.ts';
+import { data as restart } from '../commands/restart.ts';
 import { data as lofi } from '../commands/effects/lofi.ts';
 import { data as nightcore } from '../commands/effects/nightcore.ts';
 import { data as vaporwave } from '../commands/effects/vaporwave.ts';
 import { data as clearFilters } from '../commands/effects/clearFilters.ts';
-
+import { data as invite } from '../commands/invite.ts';
 
 export async function registerCommands(client: Client) {
 
@@ -138,7 +139,7 @@ export async function registerCommands(client: Client) {
             .setDescription('📡 ping check')
             .toJSON(),
 
-                new SlashCommandBuilder()
+        new SlashCommandBuilder()
             .setName('lofi')
             .setDescription('🎵 เอฟเฟค Lo-Fi สำหรับเพลง (ฟังสบายๆทำงาน เรียน)')
             .toJSON(),
@@ -148,7 +149,7 @@ export async function registerCommands(client: Client) {
             .setDescription('🎵 เอฟเฟค Nightcore สำหรับเพลง (เล่นเกม + ปลุกใจ)')
             .toJSON(),
 
-         new SlashCommandBuilder()
+        new SlashCommandBuilder()
             .setName('vaporwave')
             .setDescription('🎵 เอฟเฟค Vaporwave สำหรับเพลง (ฟังสบายๆ)')
             .toJSON(),
@@ -156,6 +157,16 @@ export async function registerCommands(client: Client) {
         new SlashCommandBuilder()
             .setName('clearfilters')
             .setDescription('🗑️ ล้างเอฟเฟคทั้งหมด')
+            .toJSON(),
+
+        new SlashCommandBuilder()
+            .setName('restart')
+            .setDescription('Restart bot systems[For developers only]')
+            .toJSON(),
+
+        new SlashCommandBuilder()
+            .setName('invite')
+            .setDescription('เชิญบอทไปยังเซิร์ฟเวอร์ของคุณ 🏁')
             .toJSON(),
     ];
 
@@ -186,6 +197,8 @@ export async function registerCommands(client: Client) {
                 nightcore.toJSON(),
                 vaporwave.toJSON(),
                 clearFilters.toJSON(),
+                restart.toJSON(),
+                invite.toJSON(),
             ]
         });
         console.log('✅ Assign commands successfully!');

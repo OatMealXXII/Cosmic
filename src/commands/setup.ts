@@ -11,7 +11,6 @@ export const data = new SlashCommandBuilder()
 export async function execute(interaction: ChatInputCommandInteraction, _shoukaku: Shoukaku) {
   const guild = interaction.guild;
   if (!guild) return interaction.reply({ content: '❌ ใช้ได้ในเซิร์ฟเวอร์เท่านั้น', ephemeral: true });
-
   const existing = getMusicChannel(guild.id);
   if (existing) return interaction.reply({ content: '❌ ตั้งค่าห้องไว้แล้ว', ephemeral: true });
 

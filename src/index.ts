@@ -1,10 +1,6 @@
-import { Client, GatewayIntentBits, ActivityType, Collection } from 'discord.js';
+import { Client, GatewayIntentBits, ActivityType, Collection, Events } from 'discord.js';
 import { Shoukaku, Connectors } from 'shoukaku';
 import path from 'path';
-
-interface CustomClient extends Client {
-    shoukaku?: Shoukaku;
-}
 import fs from 'fs';
 import { fileURLToPath } from 'url';
 import { configDotenv } from 'dotenv';
@@ -25,12 +21,16 @@ interface Nodes {
     host: string;
     port: number;
 }
+interface CustomClient extends Client {
+    shoukaku?: Shoukaku;
+}
 
 const client: CustomClient = new Client({
     intents: [
         GatewayIntentBits.Guilds,
         GatewayIntentBits.GuildVoiceStates,
-        GatewayIntentBits.GuildVoiceStates
+        GatewayIntentBits.GuildMessages,
+        GatewayIntentBits.MessageContent
     ]
 });
 
@@ -45,14 +45,11 @@ client.commands = new Collection();
 
 const commandFiles = fs.readdirSync(path.join(__dirname, 'commands')).filter(file => file.endsWith('.js') || file.endsWith('.ts'));
 
-// แทนที่ส่วนนี้ในไฟล์หลัก
 for (const file of commandFiles) {
     try {
         const command = await import(`./commands/${file}`);
-        
-        // ตรวจสอบทั้ง named export และ default export
         const commandData = command.default || command;
-        
+
         if (commandData.data?.name) {
             client.commands.set(commandData.data.name, commandData);
             console.log(`✅ Loaded command: ${commandData.data.name}`);
@@ -94,27 +91,32 @@ client.once('ready', async () => {
     });
 });
 
-client.on('interactionCreate', (interaction) => {
-    if (!interaction.isChatInputCommand()) return;
-    handleInteraction(interaction, shoukaku);
-
-    client.user?.setActivity(config.activities.name, { type: ActivityType[config.activities.type as keyof typeof ActivityType] });
-});
-
 client.on('interactionCreate', async (interaction) => {
-    if (interaction.isAutocomplete()) {
-        if (interaction.commandName === 'play') {
-            try {
-                await playAutocomplete(interaction, client.shoukaku);
-            } catch (error) {
-                console.error('Autocomplete error:', error);
-                const focusedValue = interaction.options.getFocused();
-                await interaction.respond([
-                    { name: `🔍 ค้นหา: ${focusedValue}`, value: focusedValue }
-                ]);
+    try {
+        if (interaction.isChatInputCommand() || interaction.isButton()) {
+            await handleInteraction(interaction, shoukaku);
+        }
+
+        if (interaction.isAutocomplete()) {
+            if (interaction.commandName === 'play') {
+                try {
+                    await playAutocomplete(interaction, client.shoukaku);
+                } catch (error) {
+                    console.error('Autocomplete error:', error);
+                    const focusedValue = interaction.options.getFocused();
+                    await interaction.respond([
+                        { name: `🔍 ค้นหา: ${focusedValue}`, value: focusedValue }
+                    ]);
+                }
             }
         }
+    } catch (error) {
+        console.error('Interaction error:', error);
     }
+
+    client.user?.setActivity(config.activities.name, {
+        type: ActivityType[config.activities.type as keyof typeof ActivityType]
+    });
 });
 
 handleVoiceStateUpdate(client, shoukaku);

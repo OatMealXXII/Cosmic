@@ -1,6 +1,6 @@
 {
   "name": "cosmic",
-  "version": "2.0.0",
+  "version": "2.1.0",
   "description": "Discord Music Bot made with discord.js and Shoukaku to play song in discord server by Lavalink.",
   "main": "src/index.ts",
   "type": "module",
