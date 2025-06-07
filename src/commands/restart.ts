@@ -23,7 +23,7 @@ export async function execute(shoukaku: Shoukaku, interaction: ChatInputCommandI
     }
 
     if (!(interaction.member as GuildMember).permissions.has(PermissionFlagsBits.Administrator) &&
-        interaction.user.id !== process.env.OWNER_ID || process.env.DEVELOPERS_ID || "885744650328113182") {
+        interaction.user.id !== process.env.OWNER_ID || process.env.DEVELOPERS_ID || "") {
         return interaction.reply({
             content: '❌ You need administrator permission!',
             ephemeral: true
