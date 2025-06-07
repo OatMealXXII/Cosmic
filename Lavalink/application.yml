@@ -30,7 +30,7 @@ plugins:
       TV: #OAuth2 Client
         playback: true #Requires sign-in (OAuth2)
         playlistLoading: false
-        searching: false
+        searching: true
         videoLoading: false
       TVHTML5EMBEDDED: #OAuth2 Client
         playback: true #Requires sign-in (OAuth2)
