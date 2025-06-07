@@ -17,6 +17,7 @@ Discord Music Bot made with discord.js and Shoukaku to play song in discord serv
 - 🔉 Volume control
 - ⛈️ Fast
 - 🔊 High quality sound
+- 🏁 Full Typescript support!
 
 ## ❓ Requirements
 - Node.js lastest LTS [Node.js](https://nodejs.org/en)
@@ -26,6 +27,8 @@ Discord Music Bot made with discord.js and Shoukaku to play song in discord serv
 ## 🏁 Getting Started
 
 > 💡 We recommend using `bun` for performance and speed.
+
+### Fast using: [Cosmic](https://discord.com/oauth2/authorize?client_id=1322918992679145553&permissions=8&integration_type=0&scope=bot)
 
 - Clone the repository
 ```bash
