@@ -8,6 +8,6 @@ export default {
         volume: 25 // ค่าเริ่มต้นของเสียงเพลง (0-100),
     },
     links: {
-        invite:"https://discord.com/oauth2/authorize?client_id=1322918992679145553&permissions=8&integration_type=0&scope=bot"
+        invite:""
     },
 };
