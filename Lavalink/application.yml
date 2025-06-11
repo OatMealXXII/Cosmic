@@ -94,9 +94,9 @@ plugins:
       yandexmusic: false # Enable Yandex Music lyrics source
       vkmusic: false # Enable Vk Music lyrics source
     spotify:
-      clientId: "0b03d99afc9c42d180a50894859be6e9"
-      clientSecret: "e06d5ee4f1234c6eaa7a519282573a67"
-      spDc: "AQCeDUrrJ9fZMjIvpQiDJ7KavBrCfItesh1TO4Z3ulqOycu65lE8H-VQ7Z1Kb9GfseqXPL2VIp77YZSzTWWm9fsxjNPQPEzzqU7cDic72clEWz1LjVlEPACCH5TLasTPq6X_5BQRTr8eAMwuRQ5FJ2DiPqF0QeVgXEPU-_wWrNlm3bUzmj3fALus8YmR0JJmtqTuxRraRC2SuRMlyZ0WkbtTxmoVpnrC-bZEMq6YmjSGVNI03xN9lvaltrtlwlE3S0Jj4Z3dJ7LYCA" # the sp dc cookie used for accessing the spotify lyrics api
+      clientId: ""
+      clientSecret: ""
+      spDc: "" # the sp dc cookie used for accessing the spotify lyrics api
       countryCode: "TH" # the country code you want to use for filtering the artists top tracks. See https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2
       playlistLoadLimit: 6 # The number of pages at 100 tracks each
       albumLoadLimit: 6 # The number of pages at 50 tracks each
