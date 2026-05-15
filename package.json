@@ -9,7 +9,7 @@
     "start": "npx tsx src/index.ts"
   },
   "author": "OatMealXXII",
-  "license": "GPL-3.0-only",
+  "license": "MIT",
   "dependencies": {
     "@discordjs/voice": "^0.18.0",
     "cosmic": "^0.0.0",
